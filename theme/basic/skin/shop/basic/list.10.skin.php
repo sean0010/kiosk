@@ -16,6 +16,7 @@ $this->view_star = (method_exists($this, 'view_star')) ? $this->view_star : true
 
 foreach((array) $list as $row){
     if( empty($row) ) continue;
+    if( $row['ca_id2'] ) continue;
 
     $item_link_href = shop_item_url($row['it_id']);     // 상품링크
     $star_score = $row['it_use_avg'] ? (int) get_star($row['it_use_avg']) : '';     //사용자후기 평균별점
