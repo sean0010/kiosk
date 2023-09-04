@@ -316,4 +316,81 @@ jQuery(function ($) {
 
         mainCart.add_wishitem(this);
     });
+
+    const optionsObject = {};
+
+    $('.sct_option').on('click', function(e) {
+        e.preventDefault();
+
+        $this = $(this);
+        const itemId = $this.attr('data-it_id');
+        const itemName = $this.attr('data-it_name');
+        const itemPrice = $this.attr('data-it_price');
+
+        $('select.it_option').each(function() {
+            const $sel = $(this);
+            $sel.find('option').each(function() {
+                const optionKey = $(this).val().split(',')[0];
+                if (optionKey == itemName) {
+                    const s = $(this).closest('select');
+                    const first = s.find('option').first();
+                    const optionLabel = first.closest('.get_item_options').find('label').text();
+                    const optionValue = itemName;
+
+                    $this.siblings().each(function(){
+                        $(this).removeClass('checked');
+                    })
+
+                    if (optionLabel in optionsObject && optionsObject[optionLabel] == optionValue) {
+                        delete optionsObject[optionLabel];
+                    } else {
+                        optionsObject[optionLabel] = optionValue;
+                        $this.addClass('checked');
+                    }
+                    console.log('o:',optionsObject);
+                }
+            });
+        });
+    });
+
+    $('.addToCart').on('click', function(e) {
+        e.preventDefault();
+        let ioId = '';
+        let ioValue = '';
+        for (const opt in optionsObject) {
+          if (ioId === '') {
+            ioId = optionsObject[opt];
+            ioValue = opt + ':' + optionsObject[opt];
+          } else {
+            ioId = ioId + mainCart.chr(30) + optionsObject[opt];
+            ioValue = ioValue + ' / ' + opt + ':' + optionsObject[opt];
+          }
+        }
+
+        const cartForm = $('form[name=fcart]');
+        cartForm.find('input[name^=io_id]').val(ioId);
+        cartForm.find('input[name^=io_value]').val(ioValue);
+        cartForm.find('input[name^=io_price]').val(0);
+        cartForm.find('input[name^=ct_qty]').val(1);
+
+        $.ajax({
+            url: cartForm.attr("action"),
+            type: "POST",
+            data: cartForm.serialize(),
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function(data, textStatus) {
+                if (data.error != '') {
+                    console.log('cartform ajax success with error:', data.error);
+                    return false;
+                }
+                mainCart.update_cart_side();
+                console.log('SUCCESS!');
+            },
+            error : function(request, status, error){
+                console.log('cartform ajax ERROR:', error)
+            }
+        });
+    });
 });

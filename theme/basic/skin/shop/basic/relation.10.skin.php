@@ -27,7 +27,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
         }
     }
 
-    echo "<li class=\"sct_li slide {$sct_last}\">\n";
+    echo "<li class=\"sct_li sct_option {$checked} {$sct_last}\" data-it_id=\"".$row['it_id']."\" data-it_name=\"".$row['it_name']."\" data-it_price=\"".$row['it_price']."\">\n";
 
     if ($this->href) {
         echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\" class=\"sct_a\">\n";
@@ -96,14 +96,3 @@ if ($i > 1) echo "</ul>\n";
 if($i == 1) echo "<p class=\"sct_noitem\">등록된 상품이 없습니다.</p>\n";
 ?>
 <!-- } 관련상품 10 끝 -->
-<script>
-$(document).ready(function(){
-    $('.scr_10').bxSlider({
-        slideWidth:175,
-        minSlides:6,
-        maxSlides:6,
-        slideMargin:20,
-        pager:false
-    });
-});
-</script>

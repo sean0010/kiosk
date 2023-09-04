@@ -364,6 +364,19 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	</div>   
     <!-- } 다른 상품 보기 끝 -->
 	</form>
+	<form name="fcart" method="post" action="<?php echo G5_THEME_SHOP_URL.'/ajax.action.php'; ?>">
+		<input type="hidden" name="action" value="cart_update">
+		<input type="hidden" name="it_id[]" value="<?php echo $it_id; ?>">
+		<input type="hidden" name="it_name[]" value="<?php echo stripslashes($it['it_name']); ?>">
+		<input type="hidden" name="it_price[]" value="<?php echo get_price($it); ?>">
+		<input type="hidden" name="it_stock[]" value="<?php echo get_it_stock_qty($it_id); ?>">
+		<input type="hidden" name="io_type[<?php echo $it_id; ?>][]" value="0">
+		<input type="hidden" name="io_id[<?php echo $it_id; ?>][]" value="">
+		<input type="hidden" name="io_value[<?php echo $it_id; ?>][]" value="">
+		<input type="hidden" name="io_price[<?php echo $it_id; ?>][]" value="">
+		<input type="hidden" name="ct_qty[<?php echo $it_id; ?>][]" value="<?php echo $item_ct_qty; ?>">
+		<input type="hidden" name="sw_direct" value="0">
+	</form>
 </div>
 
 <script>

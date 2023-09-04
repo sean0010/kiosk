@@ -6,6 +6,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 ?>
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
+<script src="<?php echo G5_THEME_JS_URL; ?>/theme.shop.list.js"></script>
 
 <?php if ($default['de_rel_list_use']) { ?>
 <!-- 관련상품 시작 { -->
@@ -198,6 +199,8 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 	    </div>   
 	</div>
 </section>
+
+<a href="#" class="addToCart">카트에담기</a>
 
 <script>
 jQuery(function($){
