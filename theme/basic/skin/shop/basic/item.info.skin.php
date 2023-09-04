@@ -16,10 +16,17 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
     if(!is_file($rel_skin_file))
         $rel_skin_file = G5_SHOP_SKIN_PATH.'/'.$default['de_rel_list_skin'];
 
-    $sql = " select b.* from {$g5['g5_shop_item_relation_table']} a left join {$g5['g5_shop_item_table']} b on (a.it_id2=b.it_id) where a.it_id = '{$it['it_id']}' and b.it_use='1' ";
-    $list = new item_list($rel_skin_file, $default['de_rel_list_mod'], 0, $default['de_rel_img_width'], $default['de_rel_img_height']);
-    $list->set_query($sql);
-    echo $list->run();
+    $ca_id_len = strlen($ca_id);
+	$len2 = $ca_id_len + 2;
+	$sql = " select ca_id from {$g5['g5_shop_category_table']} where ca_id like '$ca_id%' and length(ca_id) = $len2 and ca_use = '1' order by ca_order, ca_id ";
+	$result = sql_query($sql);
+    while ($row=sql_fetch_array($result)) {
+    	$ca_id2 = $row['ca_id'];
+    	$sql2 = "SELECT * FROM {$g5['g5_shop_item_table']} WHERE ca_id2 = '$ca_id2'";// AND ca_use = '1'";
+    	$list = new item_list($rel_skin_file, $default['de_rel_list_mod'], 0, $default['de_rel_img_width'], $default['de_rel_img_height']);
+    	$list->set_query($sql2);
+    	echo $list->run();
+    }
     ?>
 </section>
 <!-- } 관련상품 끝 -->
