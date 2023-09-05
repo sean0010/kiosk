@@ -13,21 +13,65 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 <section id="sit_rel">
     <h2>관련상품</h2>
     <?php
+    $sql0 = "SELECT * FROM {$g5['g5_shop_item_table']} WHERE it_id='$it_id'";
+    $validOptionResult = sql_query($sql0);
+    $inCategories = '';
+    $validOptions = array();
+    while ($row = sql_fetch_array($validOptionResult)) {
+        if (!empty($row['it_1_subj'])) {
+            array_push($validOptions, $row['it_1']);
+        }
+        if (!empty($row['it_2_subj'])) {
+            array_push($validOptions, $row['it_2']);
+        }
+        if (!empty($row['it_3_subj'])) {
+            array_push($validOptions, $row['it_3']);
+        }
+        if (!empty($row['it_4_subj'])) {
+            array_push($validOptions, $row['it_4']);
+        }
+        if (!empty($row['it_5_subj'])) {
+            array_push($validOptions, $row['it_5']);
+        }
+        if (!empty($row['it_6_subj'])) {
+            array_push($validOptions, $row['it_6']);
+        }
+        if (!empty($row['it_7_subj'])) {
+            array_push($validOptions, $row['it_7']);
+        }
+        if (!empty($row['it_8_subj'])) {
+            array_push($validOptions, $row['it_8']);
+        }
+        if (!empty($row['it_9_subj'])) {
+            array_push($validOptions, $row['it_9']);
+        }
+        if (!empty($row['it_10_subj'])) {
+            array_push($validOptions, $row['it_10']);
+        }
+    }
+    //$_SESSION['valid_options'] = $validOptions;
+
     $rel_skin_file = $skin_dir.'/'.$default['de_rel_list_skin'];
     if(!is_file($rel_skin_file))
         $rel_skin_file = G5_SHOP_SKIN_PATH.'/'.$default['de_rel_list_skin'];
 
-    $ca_id_len = strlen($ca_id);
-	$len2 = $ca_id_len + 2;
-	$sql = " select ca_id from {$g5['g5_shop_category_table']} where ca_id like '$ca_id%' and length(ca_id) = $len2 and ca_use = '1' order by ca_order, ca_id ";
-	$result = sql_query($sql);
-    while ($row=sql_fetch_array($result)) {
-    	$ca_id2 = $row['ca_id'];
+    // $ca_id_len = strlen($ca_id);
+	// $len2 = $ca_id_len + 2;
+	// $sql = " select ca_id from {$g5['g5_shop_category_table']} where ca_id like '$ca_id%' and length(ca_id) = $len2 and ca_use = '1' order by ca_order, ca_id ";
+	// $result = sql_query($sql);
+    // while ($row=sql_fetch_array($result)) {
+    // 	$ca_id2 = $row['ca_id'];
+    // 	$sql2 = "SELECT * FROM {$g5['g5_shop_item_table']} WHERE ca_id2 = '$ca_id2'";// AND ca_use = '1'";
+    // 	$list = new item_list($rel_skin_file, $default['de_rel_list_mod'], 0, $default['de_rel_img_width'], $default['de_rel_img_height']);
+    // 	$list->set_query($sql2);
+    // 	echo $list->run();
+    // }
+    foreach ($validOptions as $key => $ca_id2) {
     	$sql2 = "SELECT * FROM {$g5['g5_shop_item_table']} WHERE ca_id2 = '$ca_id2'";// AND ca_use = '1'";
     	$list = new item_list($rel_skin_file, $default['de_rel_list_mod'], 0, $default['de_rel_img_width'], $default['de_rel_img_height']);
     	$list->set_query($sql2);
     	echo $list->run();
-    }
+	}
     ?>
 </section>
 <!-- } 관련상품 끝 -->
