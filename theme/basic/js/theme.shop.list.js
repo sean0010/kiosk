@@ -326,31 +326,43 @@ jQuery(function ($) {
         const itemId = $this.attr('data-it_id');
         const itemName = $this.attr('data-it_name');
         const itemPrice = $this.attr('data-it_price');
+        const caId2 = $this.attr('data-ca_id2');
 
-        $('select.it_option').each(function() {
-            const $sel = $(this);
-            $sel.find('option').each(function() {
-                const optionKey = $(this).val().split(',')[0];
-                if (optionKey == itemName) {
-                    const s = $(this).closest('select');
-                    const first = s.find('option').first();
-                    const optionLabel = first.closest('.get_item_options').find('label').text();
-                    const optionValue = itemName;
+        $this.siblings().each(function(){
+            $(this).removeClass('checked');
+        })
+        if (caId2 in optionsObject && optionsObject[caId2] == itemName) {
+            delete optionsObject[caId2];
+        } else {
+            optionsObject[caId2] = itemName;
+            $this.addClass('checked');
+        }
+        console.log('o:',optionsObject);
 
-                    $this.siblings().each(function(){
-                        $(this).removeClass('checked');
-                    })
+        // $('select.it_option').each(function() {
+        //     const $sel = $(this);
+        //     $sel.find('option').each(function() {
+        //         const optionKey = $(this).val().split(',')[0];
+        //         if (optionKey == itemName) {
+        //             const s = $(this).closest('select');
+        //             const first = s.find('option').first();
+        //             const optionLabel = first.closest('.get_item_options').find('label').text();
+        //             const optionValue = itemName;
 
-                    if (optionLabel in optionsObject && optionsObject[optionLabel] == optionValue) {
-                        delete optionsObject[optionLabel];
-                    } else {
-                        optionsObject[optionLabel] = optionValue;
-                        $this.addClass('checked');
-                    }
-                    console.log('o:',optionsObject);
-                }
-            });
-        });
+        //             $this.siblings().each(function(){
+        //                 $(this).removeClass('checked');
+        //             })
+
+        //             if (optionLabel in optionsObject && optionsObject[optionLabel] == optionValue) {
+        //                 delete optionsObject[optionLabel];
+        //             } else {
+        //                 optionsObject[optionLabel] = optionValue;
+        //                 $this.addClass('checked');
+        //             }
+        //             console.log('o:',optionsObject);
+        //         }
+        //     });
+        // });
     });
 
     $('.addToCart').on('click', function(e) {

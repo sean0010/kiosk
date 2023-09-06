@@ -27,7 +27,7 @@ for ($i=1; $row=sql_fetch_array($result); $i++) {
         }
     }
 
-    echo "<li class=\"sct_li sct_option {$checked} {$sct_last}\" data-it_id=\"".$row['it_id']."\" data-it_name=\"".$row['it_name']."\" data-it_price=\"".$row['it_price']."\">\n";
+    echo "<li class=\"sct_li sct_option {$checked} {$sct_last}\" data-it_id=\"".$row['it_id']."\" data-it_name=\"".$row['it_name']."\" data-it_price=\"".$row['it_price']."\" data-ca_id2=\"".$row['ca_id2']."\">\n";
 
     if ($this->href) {
         echo "<div class=\"sct_img\"><a href=\"{$item_link_href}\" class=\"sct_a\">\n";

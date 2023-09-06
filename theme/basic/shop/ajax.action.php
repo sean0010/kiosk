@@ -247,6 +247,8 @@ switch ($action) {
 
         die(json_encode(array('error' => '')));
         break;
+    case 'cart_update2' : 
+        break;
 
     case 'get_item_option' :
         
