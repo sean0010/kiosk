@@ -327,63 +327,41 @@ jQuery(function ($) {
         const itemName = $this.attr('data-it_name');
         const itemPrice = $this.attr('data-it_price');
         const caId2 = $this.attr('data-ca_id2');
+        const optionOrder = $this.attr('data-optionorder');
 
         $this.siblings().each(function(){
             $(this).removeClass('checked');
         })
-        if (caId2 in optionsObject && optionsObject[caId2] == itemName) {
+        if (caId2 in optionsObject && optionsObject[caId2].name == itemName) {
             delete optionsObject[caId2];
         } else {
-            optionsObject[caId2] = itemName;
+            optionsObject[caId2] = {name: itemName, price: itemPrice, order: optionOrder};
             $this.addClass('checked');
         }
         console.log('o:',optionsObject);
-
-        // $('select.it_option').each(function() {
-        //     const $sel = $(this);
-        //     $sel.find('option').each(function() {
-        //         const optionKey = $(this).val().split(',')[0];
-        //         if (optionKey == itemName) {
-        //             const s = $(this).closest('select');
-        //             const first = s.find('option').first();
-        //             const optionLabel = first.closest('.get_item_options').find('label').text();
-        //             const optionValue = itemName;
-
-        //             $this.siblings().each(function(){
-        //                 $(this).removeClass('checked');
-        //             })
-
-        //             if (optionLabel in optionsObject && optionsObject[optionLabel] == optionValue) {
-        //                 delete optionsObject[optionLabel];
-        //             } else {
-        //                 optionsObject[optionLabel] = optionValue;
-        //                 $this.addClass('checked');
-        //             }
-        //             console.log('o:',optionsObject);
-        //         }
-        //     });
-        // });
     });
 
     $('.addToCart').on('click', function(e) {
         e.preventDefault();
         let ioId = '';
         let ioValue = '';
+        let ioPrice = 0;
         for (const opt in optionsObject) {
           if (ioId === '') {
-            ioId = optionsObject[opt];
-            ioValue = opt + ':' + optionsObject[opt];
+            ioId = optionsObject[opt].name;
+            ioValue = opt + ':' + optionsObject[opt].name;
           } else {
-            ioId = ioId + mainCart.chr(30) + optionsObject[opt];
-            ioValue = ioValue + ' / ' + opt + ':' + optionsObject[opt];
+            ioId = ioId + mainCart.chr(30) + optionsObject[opt].name;
+            ioValue = ioValue + ' / ' + opt + ':' + optionsObject[opt].name;
           }
+          ioPrice += Number(optionsObject[opt].price);
         }
 
         const cartForm = $('form[name=fcart]');
         cartForm.find('input[name^=io_id]').val(ioId);
         cartForm.find('input[name^=io_value]').val(ioValue);
-        cartForm.find('input[name^=io_price]').val(0);
-        cartForm.find('input[name^=ct_qty]').val(1);
+        cartForm.find('input[name^=io_price]').val(ioPrice);
+        console.log('@@@ ioPrice:',ioPrice, cartForm.find('input[name^=io_price]').val());
 
         $.ajax({
             url: cartForm.attr("action"),

@@ -365,15 +365,15 @@ switch ($action) {
                 $io_value = isset($_POST['io_value'][$it_id][$k]) ? $_POST['io_value'][$it_id][$k] : '';
 
                 // 선택옵션정보가 존재하는데 선택된 옵션이 없으면 건너뜀
-                if($lst_count && $io_id == '')
-                    continue;
+                // if($lst_count && $io_id == '')
+                //     continue;
                 
-                $opt_list_type_id_use = isset($opt_list[$io_type][$io_id]['use']) ? $opt_list[$io_type][$io_id]['use'] : '';
+                //$opt_list_type_id_use = isset($opt_list[$io_type][$io_id]['use']) ? $opt_list[$io_type][$io_id]['use'] : '';
                 // 구매할 수 없는 옵션은 건너뜀
-                if($io_id && ! $opt_list_type_id_use)
-                    continue;
+                //if($io_id && ! $opt_list_type_id_use)
+                //    continue;
 
-                $io_price = isset($opt_list[$io_type][$io_id]['price']) ? $opt_list[$io_type][$io_id]['price'] : 0;
+                $io_price = isset($_POST['io_price'][$it_id][$k]) ? $_POST['io_price'][$it_id][$k] : 0;
                 $ct_qty = isset($_POST['ct_qty'][$it_id][$k]) ? (int) $_POST['ct_qty'][$it_id][$k] : 0;
 
                 // 구매가격이 음수인지 체크
@@ -394,17 +394,17 @@ switch ($action) {
                               and ct_status = '쇼핑' ";
                 $row2 = sql_fetch($sql2);
                 if(isset($row2['ct_id']) && $row2['ct_id']) {
-                    // 재고체크
-                    $tmp_ct_qty = $row2['ct_qty'];
-                    if(!$io_id)
-                        $tmp_it_stock_qty = get_it_stock_qty($it_id);
-                    else
-                        $tmp_it_stock_qty = get_option_stock_qty($it_id, $io_id, $row2['io_type']);
+                    // 재고체크 : 각 옵션별 재고체크는 하지 않고 재고가 무한인 것으로 간주
+                    // $tmp_ct_qty = $row2['ct_qty'];
+                    // if(!$io_id)
+                    //     $tmp_it_stock_qty = get_it_stock_qty($it_id);
+                    // else
+                    //     $tmp_it_stock_qty = get_option_stock_qty($it_id, $io_id, $row2['io_type']);
 
-                    if ($tmp_ct_qty + $ct_qty > $tmp_it_stock_qty)
-                    {
-                        die(json_encode(array('error' => $io_value." 의 재고수량이 부족합니다.\n\n현재 재고수량 : " . number_format($tmp_it_stock_qty) . " 개")));
-                    }
+                    // if ($tmp_ct_qty + $ct_qty > $tmp_it_stock_qty)
+                    // {
+                    //     die(json_encode(array('error' => $io_value." 의 재고수량이 부족합니다.\n\n현재 재고수량 : " . number_format($tmp_it_stock_qty) . " 개")));
+                    // }
 
                     $sql3 = " update {$g5['g5_shop_cart_table']}
                                 set ct_qty = ct_qty + '$ct_qty'

@@ -374,7 +374,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_SHOP_CSS_URL.'/style.css">', 0
 		<input type="hidden" name="io_id[<?php echo $it_id; ?>][]" value="">
 		<input type="hidden" name="io_value[<?php echo $it_id; ?>][]" value="">
 		<input type="hidden" name="io_price[<?php echo $it_id; ?>][]" value="">
-		<input type="hidden" name="ct_qty[<?php echo $it_id; ?>][]" value="<?php echo $item_ct_qty; ?>">
+		<label>수량</label><input type="number" name="ct_qty[<?php echo $it_id; ?>][]" value="1" style="font-size:20px;padding:4px">
 		<input type="hidden" name="sw_direct" value="0">
 	</form>
 </div>
