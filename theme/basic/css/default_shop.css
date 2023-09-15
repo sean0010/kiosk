@@ -113,7 +113,7 @@ border:1px solid #558ab7 !important;
 
 
 /*사이드 메뉴*/
-#side_menu {height:100%;position:fixed;top:0;right:0;background:#fff;border-left:1px solid #e5e7ea;z-index:120;padding-left:50px;-webkit-box-shadow:0 1px 5px #d6d6d6;
+#side_menu {width:100%;position:fixed;bottom:0;left:0;right:0;background:#fff;border-left:1px solid #e5e7ea;z-index:120;padding-left:50px;-webkit-box-shadow:0 1px 5px #d6d6d6;
 -moz-box-shadow:0 1px 5px #d6d6d6;
 box-shadow:0 1px 5px #d6d6d6}
 
@@ -128,11 +128,11 @@ box-shadow:0 1px 5px #d6d6d6}
 
 .side_mn_wr1 {display:none;width:230px;overflow-y:auto;height:100%}
 .side_mn_wr2 {display:none;width:230px;overflow-y:auto;height:100%}
-.side_mn_wr3 {display:none;width:230px;overflow-y:auto;height:100%}
+.side_mn_wr3 {width:230px;overflow-y:auto;height:100%}
 .side_mn_wr4 {display:none;width:230px;overflow-y:auto;height:100%}
 .btn_sm_on i {color:#3a8afd}
 
-.qk_con {display:none;position:relative;width:230px;height:100%;background:#fff;border-left:1px solid #f0f0f0}
+.qk_con {position:relative;width:230px;height:100%;background:#fff;border-left:1px solid #f0f0f0}
 .qk_con h2.s_h2 {position:relative;margin:0;font-size:1.25em;padding:15px;border-bottom:1px solid #e5e7ea}
 .qk_con h2.s_h2 span {display:inline-block;min-width:20px;padding:2px 8px;border-radius:30px;text-align:center;background:#eff5ff;color:#3b8afc;font-size:0.7em;font-weight:normal;vertical-align:text-bottom}
 .qk_con_wr {padding:0;height:100%;overflow-y:auto}

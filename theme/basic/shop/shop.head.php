@@ -105,48 +105,14 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carou
         
 <div id="side_menu">
 	<ul id="quick">
-		<li><button class="btn_sm_cl1 btn_sm"><i class="fa fa-user-o" aria-hidden="true"></i><span class="qk_tit">마이메뉴</span></button></li>
-		<li><button class="btn_sm_cl2 btn_sm"><i class="fa fa-archive" aria-hidden="true"></i><span class="qk_tit">오늘 본 상품</span></button></li>
 		<li><button class="btn_sm_cl3 btn_sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="qk_tit">장바구니</span></button></li>
-		<li><button class="btn_sm_cl4 btn_sm"><i class="fa fa-heart-o" aria-hidden="true"></i><span class="qk_tit">위시리스트</span></button></li>
     </ul>
     <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
     <div id="tabs_con">
-	    <div class="side_mn_wr1 qk_con">
-	    	<div class="qk_con_wr">
-	    		<?php echo outlogin('theme/shop_side'); // 아웃로그인 ?>
-		        <ul class="side_tnb">
-		        	<?php if ($is_member) { ?>
-					<li><a href="<?php echo G5_SHOP_URL; ?>/mypage.php">마이페이지</a></li>
-		            <?php } ?>
-					<li><a href="<?php echo G5_SHOP_URL; ?>/orderinquiry.php">주문내역</a></li>
-					<li><a href="<?php echo G5_BBS_URL ?>/faq.php">FAQ</a></li>
-		            <li><a href="<?php echo G5_BBS_URL ?>/qalist.php">1:1문의</a></li>
-		            <li><a href="<?php echo G5_SHOP_URL ?>/personalpay.php">개인결제</a></li>
-		            <li><a href="<?php echo G5_SHOP_URL ?>/itemuselist.php">사용후기</a></li>
-		            <li><a href="<?php echo G5_SHOP_URL ?>/itemqalist.php">상품문의</a></li>
-		            <li><a href="<?php echo G5_SHOP_URL; ?>/couponzone.php">쿠폰존</a></li>
-		        </ul>
-	        	<?php // include_once(G5_SHOP_SKIN_PATH.'/boxcommunity.skin.php'); // 커뮤니티 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sound_only">나의정보 닫기</span></button>
-	    	</div>
-	    </div>
-	    <div class="side_mn_wr2 qk_con">
-	    	<div class="qk_con_wr">
-	        	<?php include(G5_SHOP_SKIN_PATH.'/boxtodayview.skin.php'); // 오늘 본 상품 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sound_only">오늘 본 상품 닫기</span></button>
-	    	</div>
-	    </div>
 	    <div class="side_mn_wr3 qk_con">
 	    	<div class="qk_con_wr">
 	        	<?php include_once(G5_SHOP_SKIN_PATH.'/boxcart.skin.php'); // 장바구니 ?>
 	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sound_only">장바구니 닫기</span></button>
-	    	</div>
-	    </div>
-	    <div class="side_mn_wr4 qk_con">
-	    	<div class="qk_con_wr">
-	        	<?php include_once(G5_SHOP_SKIN_PATH.'/boxwish.skin.php'); // 위시리스트 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sound_only">위시리스트 닫기</span></button>
 	    	</div>
 	    </div>
     </div>
@@ -186,18 +152,18 @@ jQuery(function ($){
         $(side_btn_el).removeClass(active_class);
     });
 
-    $(document).mouseup(function (e){
-        var container = $(quick_container),
-            mn_container = $(".shop_login");
-        if( container.has(e.target).length === 0){
-            container.hide();
-            $(side_btn_el).removeClass(active_class);
-        }
-        if( mn_container.has(e.target).length === 0){
-            $(".member_mn").hide();
-            $(".btn_member_mn").removeClass("btn_member_mn_on");
-        }
-    });
+    // $(document).mouseup(function (e){
+    //     var container = $(quick_container),
+    //         mn_container = $(".shop_login");
+    //     if( container.has(e.target).length === 0){
+    //         container.hide();
+    //         $(side_btn_el).removeClass(active_class);
+    //     }
+    //     if( mn_container.has(e.target).length === 0){
+    //         $(".member_mn").hide();
+    //         $(".btn_member_mn").removeClass("btn_member_mn_on");
+    //     }
+    // });
 
     $("#top_btn").on("click", function() {
         $("html, body").animate({scrollTop:0}, '500');
