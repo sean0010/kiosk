@@ -376,7 +376,7 @@ jQuery(function ($) {
                     return false;
                 }
                 mainCart.update_cart_side();
-                console.log('SUCCESS!');
+                alert("상품을 카트에 담았습니다.");
             },
             error : function(request, status, error){
                 console.log('cartform ajax ERROR:', error)
