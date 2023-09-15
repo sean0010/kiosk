@@ -48,28 +48,28 @@ $ad_default = ! empty($_POST['ad_default']) ? (int) $_POST['ad_default'] : 0;
 
 $error = "";
 // 장바구니 상품 재고 검사
-$sql = " select it_id,
-                ct_qty,
-                it_name,
-                io_id,
-                io_type,
-                ct_option
-           from {$g5['g5_shop_cart_table']}
-          where od_id = '$tmp_cart_id'
-            and ct_select = '1' ";
-$result = sql_query($sql);
-for ($i=0; $row=sql_fetch_array($result); $i++)
-{
-    // 상품에 대한 현재고수량
-    if($row['io_id']) {
-        $it_stock_qty = (int)get_option_stock_qty($row['it_id'], $row['io_id'], $row['io_type']);
-    } else {
-        $it_stock_qty = (int)get_it_stock_qty($row['it_id']);
-    }
-    // 장바구니 수량이 재고수량보다 많다면 오류
-    if ($row['ct_qty'] > $it_stock_qty)
-        $error .= "{$row['ct_option']} 의 재고수량이 부족합니다. 현재고수량 : $it_stock_qty 개\\n\\n";
-}
+// $sql = " select it_id,
+//                 ct_qty,
+//                 it_name,
+//                 io_id,
+//                 io_type,
+//                 ct_option
+//            from {$g5['g5_shop_cart_table']}
+//           where od_id = '$tmp_cart_id'
+//             and ct_select = '1' ";
+// $result = sql_query($sql);
+// for ($i=0; $row=sql_fetch_array($result); $i++)
+// {
+//     // 상품에 대한 현재고수량
+//     if($row['io_id']) {
+//         $it_stock_qty = (int)get_option_stock_qty($row['it_id'], $row['io_id'], $row['io_type']);
+//     } else {
+//         $it_stock_qty = (int)get_it_stock_qty($row['it_id']);
+//     }
+//     // 장바구니 수량이 재고수량보다 많다면 오류
+//     if ($row['ct_qty'] > $it_stock_qty)
+//         $error .= "{$row['ct_option']} 의 재고수량이 부족합니다. 현재고수량 : $it_stock_qty 개\\n\\n";
+// }
 
 if($i == 0) {
     if(function_exists('add_order_post_log')) add_order_post_log('장바구니가 비어 있습니다.');
