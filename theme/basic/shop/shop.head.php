@@ -104,9 +104,6 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carou
 <!-- } 상단 끝 -->
         
 <div id="side_menu">
-	<ul id="quick">
-		<li><button class="btn_sm_cl3 btn_sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="qk_tit">장바구니</span></button></li>
-    </ul>
     <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
     <div id="tabs_con">
 	    <div class="side_mn_wr3 qk_con">
