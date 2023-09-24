@@ -104,12 +104,10 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carou
 <!-- } 상단 끝 -->
         
 <div id="side_menu">
-    <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
     <div id="tabs_con">
 	    <div class="side_mn_wr3 qk_con">
 	    	<div class="qk_con_wr">
-	        	<?php include_once(G5_SHOP_SKIN_PATH.'/boxcart.skin.php'); // 장바구니 ?>
-	    		<button type="button" class="con_close"><i class="fa fa-times-circle" aria-hidden="true"></i><span class="sound_only">장바구니 닫기</span></button>
+	            <?php include_once(G5_THEME_PATH.'/skin/shop/basic/boxcart.skin.php'); // 장바구니 ?>
 	    	</div>
 	    </div>
     </div>
