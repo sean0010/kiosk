@@ -17,7 +17,7 @@ switch ($action) {
             sql_query($sql);
         }
 
-        include_once(G5_SHOP_SKIN_PATH.'/boxcart.skin.php'); // 장바구니
+        include_once(G5_THEME_PATH.'/skin/shop/basic/boxcart.skin.php'); // 장바구니
         break;
 
     case 'refresh_wish' :
@@ -41,6 +41,15 @@ switch ($action) {
         $sql = " delete from {$g5['g5_shop_cart_table']}
                     where od_id = '".$s_cart_id."'
                       and it_id = '{$it_id}' ";
+        sql_query($sql);
+
+        die(json_encode(array('error' => '')));
+
+        break;
+    case 'cart_delete_option' :
+        cart_item_clean();
+        $ct_id = isset($_POST['ct_id']) ? safe_replace_regex($_POST['ct_id'], 'it_id') : '';
+        $sql = " delete from {$g5['g5_shop_cart_table']} where ct_id = '".$ct_id."' ";
         sql_query($sql);
 
         die(json_encode(array('error' => '')));
@@ -447,7 +456,6 @@ switch ($action) {
 
         die(json_encode(array('error' => '')));
         break;
-
     case 'get_item_option' :
         
         $it = get_shop_item($it_id, true);

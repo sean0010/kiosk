@@ -105,11 +105,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_JS_URL.'/owlcarousel/owl.carou
         
 <div id="side_menu">
     <div id="tabs_con">
-	    <div class="side_mn_wr3 qk_con">
-	    	<div class="qk_con_wr">
-	            <?php include_once(G5_THEME_PATH.'/skin/shop/basic/boxcart.skin.php'); // 장바구니 ?>
-	    	</div>
-	    </div>
+        <?php include_once(G5_THEME_PATH.'/skin/shop/basic/boxcart.skin.php'); // 장바구니 ?>
     </div>
 </div>
 <script>

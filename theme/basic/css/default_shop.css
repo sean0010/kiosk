@@ -1283,3 +1283,6 @@ html.no-overflowscrolling #sc_coupon_frm, html.no-overflowscrolling #od_coupon_f
 .sct_option.checked{border:1px solid green}
 .addToCart{padding:20px;font-size:20px;border:1px solid black;display:inline-block;background:#eee}
 #sit_opt_info, #sit_star_sns, #sit_sel_option, #sit_tot_price, #sit_ov_btn, .sit_info{display:none}
+.itemName{display:inline-block;min-width:110px;}
+.itemPrice{display:inline-block;min-width:70px;}
+.cart_del_option{margin-left: 5px;cursor:pointer}

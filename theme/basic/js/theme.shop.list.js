@@ -140,7 +140,7 @@ jQuery(function ($) {
                 var inner_html = $(data).filter(".sbsk").html(),
                     cart_count = $(data).find(".cart-count").text();
                 
-                $(".qk_con_wr .sbsk").html(inner_html);
+                $(".sbsk").html(inner_html);
                 $(".hd_login .shop_cart .count").text(cart_count);
             },
             error : function(request, status, error){
